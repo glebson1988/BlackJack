@@ -12,10 +12,10 @@ class Card
     '8' => 8,
     '9' => 9,
     '10' => 10,
-    :jack => 10,
-    :queen => 10,
-    :king => 10,
-    :ace => 10
+    :J => 10,
+    :Q => 10,
+    :K => 10,
+    :T => 10
   }.freeze
 
   def initialize(suit, name, value)
@@ -25,6 +25,6 @@ class Card
   end
 
   def ace?
-    true if name == :ace
+    true if name == :T
   end
 end

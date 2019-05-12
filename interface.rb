@@ -1,5 +1,7 @@
 class Interface
   def receive_name
+    puts 'Black Jack Game'
+    puts '=' * 80
     puts 'Input your name: '
     gets.strip
   end
@@ -25,7 +27,7 @@ class Interface
   end
 
   def show_card(card)
-    print "#{card.name} #{card.suit}"
+    print "#{card.name}#{card.suit} "
   end
 
   def hidden_dealer_card(amount)
@@ -35,6 +37,7 @@ class Interface
   def show_money(user, dealer)
     puts "#{user.name} money: #{user.money}"
     puts "Dealer money: #{dealer.money}"
+    puts '=' * 80
   end
 
   def play_again
