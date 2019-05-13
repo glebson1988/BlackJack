@@ -19,7 +19,6 @@ class Game
     bank.money += BET * 2
     2.times { take_card(user) }
     2.times { take_card(dealer) }
-    show_cards
   end
 
   def take_card(gamer)
@@ -28,71 +27,18 @@ class Game
     gamer.used_cards << deck.cards.pop
   end
 
-  def show_user_cards(user, value = nil)
-    puts "#{user.name} cards (#{value} points): "
-  end
-
-  def show_dealer_cards(value = nil)
-    if value
-      puts "Dealer cards (#{value} points): "
-    else
-      puts 'Dealer cards: '
-    end
-  end
-
-  def show_card(card)
-    print "#{card.name}#{card.suit} "
-  end
-
-  def hidden_dealer_card(amount)
-    print '* ' * amount
-  end
-
-  def show_players_money(user, dealer)
-    puts "#{user.name} money: #{user.money}"
-    puts "Dealer money: #{dealer.money}"
-    puts '=' * 80
-  end
-
-  def show_cards
-    show_user_cards(user, user.score)
-    user.used_cards.each { |card| show_card(card) }
-    puts
-    show_dealer_cards
-    hidden_dealer_card(dealer.used_cards.size)
-    puts
-  end
-
-  def show_money
-    show_players_money(user, dealer)
-  end
-
   def dealer_turn
     take_card(dealer) if dealer.score < 17
-    if user.used_cards.size == 3 || dealer.used_cards.size == 3
-      open_cards
-    else
-      show_cards
-    end
   end
 
-  def add_card
-    take_card(user)
-    dealer_turn
+  def deal_result?
+    user.used_cards.size == 3 || dealer.used_cards.size == 3
   end
 
   def open_cards
     user_points = user.score
     dealer_points = dealer.score
-    show_user_cards(user, user_points)
-    user.used_cards.each { |card| show_card(card) }
-    puts
-    show_dealer_cards(dealer_points)
-    dealer.used_cards.each { |card| show_card(card) }
-    puts
     count_money(user_points, dealer_points)
-    show_money
-    play_again
   end
 
   def take_money(gamer, money)
@@ -123,11 +69,5 @@ class Game
       take_money(dealer, bank.money / 2)
     end
     bank_zero
-  end
-
-  def play_again
-    puts 'Play again? (input: Y/N)'
-    input = gets.strip.downcase
-    input == 'y' ? deal : abort
   end
 end

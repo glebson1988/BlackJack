@@ -15,7 +15,7 @@ class Card
     :J => 10,
     :Q => 10,
     :K => 10,
-    :T => 10
+    :T => 11
   }.freeze
 
   def initialize(suit, name, value)
