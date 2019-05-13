@@ -7,5 +7,4 @@ require_relative 'user'
 require_relative 'interface'
 require_relative 'game'
 
-game = Game.new
-game.start
+Interface.new.start

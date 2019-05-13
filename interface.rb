@@ -1,9 +1,12 @@
 class Interface
-  def receive_name
+  attr_accessor :game
+
+  def register_user
     puts 'Black Jack Game'
     puts '=' * 80
     puts 'Input your name: '
-    gets.strip
+    @user_name = gets.strip
+    @game = Game.new(@user_name)
   end
 
   def choose_action
@@ -11,37 +14,20 @@ class Interface
     puts '1 - Miss'
     puts '2 - Take card'
     puts '3 - Open cards'
-    gets.strip.to_i
   end
 
-  def show_user_cards(user, value = nil)
-    puts "#{user.name} cards (#{value} points): "
-  end
-
-  def show_dealer_cards(value = nil)
-    if value
-      puts "Dealer cards (#{value} points): "
-    else
-      puts 'Dealer cards: '
+  def start
+    register_user
+    loop do
+      choose_action
+      input = gets.strip.to_i
+      case input
+      when 1 then game.dealer_turn
+      when 2 then game.add_card
+      when 3 then game.open_cards
+      else
+        puts 'Wrong input. Please, choose 1, 2 or 3.'
+      end
     end
-  end
-
-  def show_card(card)
-    print "#{card.name}#{card.suit} "
-  end
-
-  def hidden_dealer_card(amount)
-    print '* ' * amount
-  end
-
-  def show_money(user, dealer)
-    puts "#{user.name} money: #{user.money}"
-    puts "Dealer money: #{dealer.money}"
-    puts '=' * 80
-  end
-
-  def play_again
-    puts 'Play again? (input: Y/N)'
-    gets.strip.downcase
   end
 end
