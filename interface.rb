@@ -24,8 +24,8 @@ class Interface
       input = gets.strip.to_i
       case input
       when 1
-        game.dealer_turn
-        game.deal_result? ? deal_cycle : show_cards
+        game.dealer_turn if game.dealer.score < 17
+        deal_cycle
       when 2
         game.take_card(game.user)
         game.dealer_turn

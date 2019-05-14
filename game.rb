@@ -51,8 +51,8 @@ class Game
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def spot_winner(user_points, dealer_points)
-    nil if dealer_points == user_points
-    nil if dealer_points > 21 && user_points > 21
+    return nil if dealer_points == user_points
+    return nil if dealer_points > 21 && user_points > 21
     return user if dealer_points > 21
     return dealer if user_points > 21
 
