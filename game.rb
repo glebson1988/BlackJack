@@ -27,8 +27,12 @@ class Game
     gamer.used_cards << deck.cards.pop
   end
 
+  def add_card?
+    dealer.score < 17
+  end
+
   def dealer_turn
-    take_card(dealer) if dealer.score < 17
+    take_card(dealer) if add_card?
   end
 
   def deal_result?
@@ -51,8 +55,8 @@ class Game
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def spot_winner(user_points, dealer_points)
-    return nil if dealer_points == user_points
-    return nil if dealer_points > 21 && user_points > 21
+    return if dealer_points == user_points
+    return if dealer_points > 21 && user_points > 21
     return user if dealer_points > 21
     return dealer if user_points > 21
 
