@@ -6,12 +6,12 @@ class Game
   def initialize(user_name)
     @user = User.new(user_name)
     @dealer = Dealer.new
-    @deck = Deck.new
     @bank = Bank.new
     deal
   end
 
   def deal
+    @deck = Deck.new
     user.used_cards = []
     dealer.used_cards = []
     user.money -= BET
