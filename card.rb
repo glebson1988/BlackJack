@@ -25,6 +25,6 @@ class Card
   end
 
   def ace?
-    true if name == :T
+    name == :T
   end
 end

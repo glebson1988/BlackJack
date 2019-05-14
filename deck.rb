@@ -4,8 +4,7 @@ class Deck
   def initialize
     @cards = Card::SUITS.each_with_object([]) do |suit, cards|
       Card::RANK.each do |name, value|
-        card = Card.new(suit, name, value)
-        cards << card
+        cards << Card.new(suit, name, value)
       end
     end
     cards.shuffle!

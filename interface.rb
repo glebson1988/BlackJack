@@ -28,6 +28,7 @@ class Interface
         game.deal_result? ? deal_cycle : show_cards
       when 2
         game.take_card(game.user)
+        game.dealer_turn
         game.deal_result? ? deal_cycle : show_cards
       when 3 then deal_cycle
       else
